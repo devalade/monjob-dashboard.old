@@ -8,8 +8,8 @@ import { buttonVariants } from "@/components/ui/button"
 import { UserLoginForm } from "@/app/auth/login/user-login-form";
 
 export const metadata: Metadata = {
-    title: "Login - MonJob",
-    description: "Login in to your account",
+    title: "Register - MonJob",
+    description: "Create an account on MonJob",
 }
 
 export default function LoginPage() {
@@ -33,7 +33,7 @@ export default function LoginPage() {
             </div>
             <div className="container relative hidden h-[800px] flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
                 <Link
-                    href="/examples/authentication"
+                    href="/auth/login"
                     className={cn(
                         buttonVariants({ variant: "ghost", size: "sm" }),
                         "absolute right-4 top-4 md:right-8 md:top-8"

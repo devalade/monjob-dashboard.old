@@ -23,6 +23,12 @@ import {supabase} from "@/lib/supabaseClient";
 interface UserLoginFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 const formSchema = z.object({
+    first_name: z.string().min(2, {
+        message: "Nom complet doit comporter deux lettres aux moins",
+    }),
+    last_name: z.string().min(2, {
+        message: "Nom complet doit comporter deux lettres aux moins",
+    }),
     email: z.string().email({
         message: "Email invalid",
     }),
@@ -33,7 +39,7 @@ const formSchema = z.object({
 
 type FormSchema = z.infer<typeof formSchema>;
 
-export function UserLoginForm( props: UserLoginFormProps) {
+export function UserRegisterForm(props: UserLoginFormProps) {
     const { className, ...restProps } = props;
     const form = useForm<FormSchema>({
         resolver: zodResolver(formSchema),
@@ -66,6 +72,32 @@ export function UserLoginForm( props: UserLoginFormProps) {
                     <div className="grid gap-2">
                         <FormField
                             control={form.control}
+                            name="first_name"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Prénom</FormLabel>
+                                    <FormControl>
+                                        <Input placeholder="" {...field} />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
+                            name="last_name"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <FormLabel>Nom</FormLabel>
+                                    <FormControl>
+                                        <Input placeholder="" {...field} />
+                                    </FormControl>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
                             name="email"
                             render={({ field }) => (
                                 <FormItem>
@@ -95,11 +127,12 @@ export function UserLoginForm( props: UserLoginFormProps) {
                             {isLoading && (
                                 <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
                             )}
-                            Se connecter
+                            Créer un compte
                         </Button>
                     </div>
                 </form>
             </Form>
+
         </div>
     )
 }
