@@ -19,15 +19,26 @@ import { useForm } from 'react-hook-form';
 import {z} from 'zod';
 import {Icons} from "@/components/icons";
 import {supabase} from "@/lib/supabaseClient";
+import dayjs from 'dayjs';
+import { useRouter } from 'next/navigation';
+import {
+    Select,
+    SelectContent,
+    SelectGroup,
+    SelectItem,
+    SelectLabel,
+    SelectTrigger,
+    SelectValue
+} from "@/components/ui/select";
 
 interface UserLoginFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 const formSchema = z.object({
     first_name: z.string().min(2, {
-        message: "Nom complet doit comporter deux lettres aux moins",
+        message: "Prénom doit comporter aux moins deux lettres",
     }),
     last_name: z.string().min(2, {
-        message: "Nom complet doit comporter deux lettres aux moins",
+        message: "Nom doit comporter aux moins deux lettres",
     }),
     email: z.string().email({
         message: "Email invalid",
@@ -41,26 +52,33 @@ type FormSchema = z.infer<typeof formSchema>;
 
 export function UserRegisterForm(props: UserLoginFormProps) {
     const { className, ...restProps } = props;
+    const router = useRouter();
     const form = useForm<FormSchema>({
         resolver: zodResolver(formSchema),
     })
     const [isLoading, setIsLoading] = React.useState<boolean>(false)
 
     async function onSubmit(values: FormSchema) {
-            setIsLoading(true)
+        setIsLoading(true)
+        console.log({values});
         try {
-            const { data, error } = await supabase.auth.signUp({
+            const { data: authData, error } = await supabase.auth.signUp({
                 email: values.email,
                 password: values.password,
                 options: {
                     data: {
+                        emailRedirectUri: `${location.origin}/dashboard`,
+                        first_name: values.first_name,
+                        last_name: values.last_name,
+                        gender: 'm',
+                        birth_date: '10-10-2000'
                     },
                 },
             })
-            setIsLoading(false);
+            router.push('/auth/login');
         } catch (e) {
             setIsLoading(false);
-            console.log(e);
+            console.log({e});
         }
 
     }

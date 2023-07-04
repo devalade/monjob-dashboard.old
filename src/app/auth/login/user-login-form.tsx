@@ -18,7 +18,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from 'react-hook-form';
 import {z} from 'zod';
 import {Icons} from "@/components/icons";
-import {supabase} from "@/lib/supabaseClient";
+import { useRouter } from 'next/navigation';
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import {useSupabase} from "@/app/supabase-provider";
 
 interface UserLoginFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -35,6 +37,8 @@ type FormSchema = z.infer<typeof formSchema>;
 
 export function UserLoginForm( props: UserLoginFormProps) {
     const { className, ...restProps } = props;
+   const {supabase } = useSupabase();
+    const router = useRouter();
     const form = useForm<FormSchema>({
         resolver: zodResolver(formSchema),
     })
@@ -43,20 +47,25 @@ export function UserLoginForm( props: UserLoginFormProps) {
     async function onSubmit(values: FormSchema) {
             setIsLoading(true)
         try {
-            const { data, error } = await supabase.auth.signUp({
+            const { data, error } = await supabase.auth.signInWithPassword({
                 email: values.email,
                 password: values.password,
-                options: {
-                    data: {
-                    },
-                },
             })
+            router.push('/dashboard');
             setIsLoading(false);
         } catch (e) {
             setIsLoading(false);
             console.log(e);
         }
 
+    }
+
+    const handleSignIn = async () => {
+        await supabase.auth.signInWithPassword({
+            email: 'aladecharaf23@gmail.com',
+            password: 'Pa$$w0rd!',
+        })
+        router.refresh()
     }
 
     return (
@@ -91,7 +100,7 @@ export function UserLoginForm( props: UserLoginFormProps) {
                             )}
                         />
 
-                        <Button disabled={isLoading}>
+                        <Button onClick={handleSignIn} type="button" disabled={isLoading}>
                             {isLoading && (
                                 <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
                             )}

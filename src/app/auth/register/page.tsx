@@ -6,6 +6,7 @@ import { Command } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
 import { UserLoginForm } from "@/app/auth/login/user-login-form";
+import {UserRegisterForm} from "@/app/auth/register/user-register-form";
 
 export const metadata: Metadata = {
     title: "Register - MonJob",
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function LoginPage() {
     return (
-        <>
+        <div className='h-screen '>
             <div className="md:hidden">
                 <Image
                     src="/examples/authentication-light.png"
@@ -31,7 +32,7 @@ export default function LoginPage() {
                     className="hidden dark:block"
                 />
             </div>
-            <div className="container relative hidden h-[800px] flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
+            <div className="container relative hidden h-full flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
                 <Link
                     href="/auth/login"
                     className={cn(
@@ -71,7 +72,7 @@ export default function LoginPage() {
                                 Enter your email below to create your account
                             </p>
                         </div>
-                        <UserLoginForm />
+                        <UserRegisterForm />
                         <p className="px-8 text-center text-sm text-muted-foreground">
                             By clicking continue, you agree to our{" "}
                             <Link
@@ -92,6 +93,6 @@ export default function LoginPage() {
                     </div>
                 </div>
             </div>
-        </>
+        </div>
     )
 }

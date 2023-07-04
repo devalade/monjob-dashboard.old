@@ -6,15 +6,23 @@ import { Command } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { buttonVariants } from "@/components/ui/button"
 import { UserLoginForm } from "@/app/auth/login/user-login-form";
+import {getSession} from "@/app/supabase-server";
+import { redirect } from 'next/navigation';
 
 export const metadata: Metadata = {
     title: "Login - MonJob",
     description: "Login in to your account",
 }
 
-export default function LoginPage() {
+export default async function LoginPage() {
+    const session = await getSession();
+    console.log({ session })
+    if (session) {
+        return redirect('/dashboard');
+    }
+
     return (
-        <>
+        <main className='h-screen'>
             <div className="md:hidden">
                 <Image
                     src="/examples/authentication-light.png"
@@ -31,15 +39,15 @@ export default function LoginPage() {
                     className="hidden dark:block"
                 />
             </div>
-            <div className="container relative hidden h-[800px] flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
+            <div className="container relative hidden h-full flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
                 <Link
-                    href="/examples/authentication"
+                    href="/auth/register"
                     className={cn(
                         buttonVariants({ variant: "ghost", size: "sm" }),
                         "absolute right-4 top-4 md:right-8 md:top-8"
                     )}
                 >
-                    Login
+                    Connexion
                 </Link>
                 <div className="relative hidden h-full flex-col bg-muted p-10 text-white dark:border-r lg:flex">
                     <div
@@ -50,14 +58,14 @@ export default function LoginPage() {
                         }}
                     />
                     <div className="relative z-20 flex items-center text-lg font-medium">
-                        <Command className="mr-2 h-6 w-6" /> Acme Inc
+                        <Command className="mr-2 h-6 w-6" /> MonJob
                     </div>
                     <div className="relative z-20 mt-auto">
                         <blockquote className="space-y-2">
                             <p className="text-lg">
                                 &ldquo;MonJob est vraiment à la hauteur de sa réputation!&rdquo;
                             </p>
-                            <footer className="text-sm">Sofia Davis</footer>
+                            <footer className="text-sm">Aladé YESSOUFOU</footer>
                         </blockquote>
                     </div>
                 </div>
@@ -65,7 +73,7 @@ export default function LoginPage() {
                     <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
                         <div className="flex flex-col space-y-2 text-center">
                             <h1 className="text-2xl font-semibold tracking-tight">
-                                Create an account
+                                Se Connecter
                             </h1>
                             <p className="text-sm text-muted-foreground">
                                 Enter your email below to create your account
@@ -92,6 +100,6 @@ export default function LoginPage() {
                     </div>
                 </div>
             </div>
-        </>
+        </main>
     )
 }
