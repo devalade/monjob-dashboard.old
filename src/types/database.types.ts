@@ -90,6 +90,7 @@ export interface Database {
           id: string
           ifu: string | null
           latitude: number | null
+          logo: string | null
           longitude: number | null
           phone_number: string
           rccm: string | null
@@ -103,6 +104,7 @@ export interface Database {
           id?: string
           ifu?: string | null
           latitude?: number | null
+          logo?: string | null
           longitude?: number | null
           phone_number: string
           rccm?: string | null
@@ -116,6 +118,7 @@ export interface Database {
           id?: string
           ifu?: string | null
           latitude?: number | null
+          logo?: string | null
           longitude?: number | null
           phone_number?: string
           rccm?: string | null
@@ -203,17 +206,26 @@ export interface Database {
       }
       profiles: {
         Row: {
+          avatar_url: string | null
+          birth_date: string | null
           first_name: string
+          gender: string | null
           id: string
           last_name: string
         }
         Insert: {
+          avatar_url?: string | null
+          birth_date?: string | null
           first_name: string
+          gender?: string | null
           id: string
           last_name: string
         }
         Update: {
+          avatar_url?: string | null
+          birth_date?: string | null
           first_name?: string
+          gender?: string | null
           id?: string
           last_name?: string
         }

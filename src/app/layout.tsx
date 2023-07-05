@@ -1,6 +1,9 @@
 import './globals.css'
 import { Lexend } from 'next/font/google'
 import SupabaseProvider from "@/app/supabase-provider";
+import { PropsWithChildren } from 'react';
+import { Toaster } from 'react-hot-toast';
+import { Provider } from 'react-redux';
 
 const lexend = Lexend({ subsets: ['latin'] })
 
@@ -9,16 +12,14 @@ export const metadata = {
   description: 'MonJob est une application de freelance',
 }
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function RootLayout({children}: PropsWithChildren) {
+
   return (
     <html lang="en">
       <body className={lexend.className}>
-      <SupabaseProvider>
-        {children}
+      <Toaster />
+        <SupabaseProvider>
+            {children}
       </SupabaseProvider>
       </body>
     </html>
