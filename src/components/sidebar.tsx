@@ -1,9 +1,11 @@
 'use client';
 
-import { LayoutGrid, ListMusic } from 'lucide-react';
+import { Cog } from 'lucide-react';
 
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
+import { isActiveLink, routes } from '@/config/route';
+import Link from 'next/link';
 
 interface SidebarProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -16,17 +18,9 @@ export function Sidebar({ className }: SidebarProps) {
             MonJob
           </h2>
           <div className='space-y-1'>
-            <Button
-              variant='secondary'
-              size='sm'
-              className='w-full justify-start'>
-              <LayoutGrid className='mr-2 h-4 w-4' />
-              Nos Offres
-            </Button>
-            <Button variant='ghost' size='sm' className='w-full justify-start'>
-              <LayoutGrid className='mr-2 h-4 w-4' />
-              Browse
-            </Button>
+            {routes.map((route) => (
+              <NavLink key={route.link} {...route} />
+            ))}
           </div>
         </div>
         <div className='px-4 py-2'>
@@ -35,12 +29,28 @@ export function Sidebar({ className }: SidebarProps) {
           </h2>
           <div className='space-y-1'>
             <Button variant='ghost' size='sm' className='w-full justify-start'>
-              <ListMusic className='mr-2 h-4 w-4' />
+              <Cog className='mr-2 h-4 w-4' />
               Comptes
             </Button>
           </div>
         </div>
       </div>
     </div>
+  );
+}
+
+type NavLink = (typeof routes)[number];
+function NavLink(props: NavLink) {
+  const { name, link, Icon } = props;
+  return (
+    <Link className='block' href={link}>
+      <Button
+        variant={isActiveLink(link) ? 'secondary' : 'ghost'}
+        size='sm'
+        className='w-full justify-start'>
+        <Icon className='mr-2 h-4 w-4' />
+        {name}
+      </Button>
+    </Link>
   );
 }

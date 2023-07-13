@@ -10,6 +10,7 @@ specifiers:
   '@radix-ui/react-label': ^2.0.2
   '@radix-ui/react-menubar': ^1.0.3
   '@radix-ui/react-navigation-menu': ^1.1.3
+  '@radix-ui/react-popover': ^1.0.6
   '@radix-ui/react-scroll-area': ^1.0.4
   '@radix-ui/react-select': ^1.2.2
   '@radix-ui/react-separator': ^1.0.3
@@ -20,6 +21,7 @@ specifiers:
   '@supabase/auth-ui-react': ^0.4.2
   '@supabase/auth-ui-shared': ^0.1.6
   '@supabase/supabase-js': ^2.25.0
+  '@tanstack/react-table': ^8.9.3
   '@types/node': 20.3.0
   '@types/react': 18.2.12
   '@types/react-dom': 18.2.5
@@ -27,17 +29,22 @@ specifiers:
   class-variance-authority: ^0.6.1
   clsx: ^1.2.1
   csstype: ^3.1.2
-  dayjs: ^1.11.9
+  date-fns: ^2.30.0
   encoding: ^0.1.13
   eslint: 8.42.0
   eslint-config-next: 13.4.5
+  filepond: ^4.30.4
   jotai: ^2.2.2
+  lodash: ^4.17.21
   lucide-react: ^0.244.0
   next: 13.4.5
   node-fetch: ^3.3.1
   postcss: 8.4.24
   react: 18.2.0
+  react-day-picker: ^8.8.0
   react-dom: 18.2.0
+  react-dropzone: ^14.2.3
+  react-filepond: ^7.1.2
   react-hook-form: ^7.44.3
   react-hot-toast: ^2.4.1
   react-redux: ^8.1.1
@@ -59,6 +66,7 @@ dependencies:
   '@radix-ui/react-label': 2.0.2_c6d5a98e1fb0699aa94136af098f403d
   '@radix-ui/react-menubar': 1.0.3_c6d5a98e1fb0699aa94136af098f403d
   '@radix-ui/react-navigation-menu': 1.1.3_c6d5a98e1fb0699aa94136af098f403d
+  '@radix-ui/react-popover': 1.0.6_c6d5a98e1fb0699aa94136af098f403d
   '@radix-ui/react-scroll-area': 1.0.4_c6d5a98e1fb0699aa94136af098f403d
   '@radix-ui/react-select': 1.2.2_c6d5a98e1fb0699aa94136af098f403d
   '@radix-ui/react-separator': 1.0.3_c6d5a98e1fb0699aa94136af098f403d
@@ -69,22 +77,28 @@ dependencies:
   '@supabase/auth-ui-react': 0.4.2_@supabase+supabase-js@2.26.0
   '@supabase/auth-ui-shared': 0.1.6_@supabase+supabase-js@2.26.0
   '@supabase/supabase-js': 2.26.0_encoding@0.1.13
+  '@tanstack/react-table': 8.9.3_react-dom@18.2.0+react@18.2.0
   '@types/node': 20.3.0
   '@types/react': 18.2.12
   '@types/react-dom': 18.2.5
   autoprefixer: 10.4.14_postcss@8.4.24
   class-variance-authority: 0.6.1
   clsx: 1.2.1
-  dayjs: 1.11.9
+  date-fns: 2.30.0
   eslint: 8.42.0
   eslint-config-next: 13.4.5_eslint@8.42.0+typescript@5.1.3
+  filepond: 4.30.4
   jotai: 2.2.2_react@18.2.0
+  lodash: 4.17.21
   lucide-react: 0.244.0_react@18.2.0
   next: 13.4.5_react-dom@18.2.0+react@18.2.0
   node-fetch: 3.3.1
   postcss: 8.4.24
   react: 18.2.0
+  react-day-picker: 8.8.0_date-fns@2.30.0+react@18.2.0
   react-dom: 18.2.0_react@18.2.0
+  react-dropzone: 14.2.3_react@18.2.0
+  react-filepond: 7.1.2_6357ff259b8e0c4d3dd9460351e304d0
   react-hook-form: 7.45.1_react@18.2.0
   react-hot-toast: 2.4.1_97d8638a3e40ce1e0fae72bbc32f8de7
   react-redux: 8.1.1_f214cee7982b1b91e491dd4bf00c8464
@@ -794,6 +808,41 @@ packages:
       react-dom: 18.2.0_react@18.2.0
     dev: false
 
+  /@radix-ui/react-popover/1.0.6_c6d5a98e1fb0699aa94136af098f403d:
+    resolution: {integrity: sha512-cZ4defGpkZ0qTRtlIBzJLSzL6ht7ofhhW4i1+pkemjV1IKXm0wgCRnee154qlV6r9Ttunmh2TNZhMfV2bavUyA==}
+    peerDependencies:
+      '@types/react': '*'
+      '@types/react-dom': '*'
+      react: ^16.8 || ^17.0 || ^18.0
+      react-dom: ^16.8 || ^17.0 || ^18.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      '@types/react-dom':
+        optional: true
+    dependencies:
+      '@babel/runtime': 7.22.5
+      '@radix-ui/primitive': 1.0.1
+      '@radix-ui/react-compose-refs': 1.0.1_0313bdddd72d055c879a887d181be17f
+      '@radix-ui/react-context': 1.0.1_0313bdddd72d055c879a887d181be17f
+      '@radix-ui/react-dismissable-layer': 1.0.4_c6d5a98e1fb0699aa94136af098f403d
+      '@radix-ui/react-focus-guards': 1.0.1_0313bdddd72d055c879a887d181be17f
+      '@radix-ui/react-focus-scope': 1.0.3_c6d5a98e1fb0699aa94136af098f403d
+      '@radix-ui/react-id': 1.0.1_0313bdddd72d055c879a887d181be17f
+      '@radix-ui/react-popper': 1.1.2_c6d5a98e1fb0699aa94136af098f403d
+      '@radix-ui/react-portal': 1.0.3_c6d5a98e1fb0699aa94136af098f403d
+      '@radix-ui/react-presence': 1.0.1_c6d5a98e1fb0699aa94136af098f403d
+      '@radix-ui/react-primitive': 1.0.3_c6d5a98e1fb0699aa94136af098f403d
+      '@radix-ui/react-slot': 1.0.2_0313bdddd72d055c879a887d181be17f
+      '@radix-ui/react-use-controllable-state': 1.0.1_0313bdddd72d055c879a887d181be17f
+      '@types/react': 18.2.12
+      '@types/react-dom': 18.2.5
+      aria-hidden: 1.2.3
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      react-remove-scroll: 2.5.5_0313bdddd72d055c879a887d181be17f
+    dev: false
+
   /@radix-ui/react-popper/1.1.2_c6d5a98e1fb0699aa94136af098f403d:
     resolution: {integrity: sha512-1CnGGfFi/bbqtJZZ0P/NQY20xdG3E0LALJaLUEoKwPLwl6PPPfbeiCqMVQnhoFRAxjJj4RpBRJzDmUgsex2tSg==}
     peerDependencies:
@@ -1306,6 +1355,23 @@ packages:
       tslib: 2.6.0
     dev: false
 
+  /@tanstack/react-table/8.9.3_react-dom@18.2.0+react@18.2.0:
+    resolution: {integrity: sha512-Ng9rdm3JPoSCi6cVZvANsYnF+UoGVRxflMb270tVj0+LjeT/ZtZ9ckxF6oLPLcKesza6VKBqtdF9mQ+vaz24Aw==}
+    engines: {node: '>=12'}
+    peerDependencies:
+      react: '>=16'
+      react-dom: '>=16'
+    dependencies:
+      '@tanstack/table-core': 8.9.3
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
+
+  /@tanstack/table-core/8.9.3:
+    resolution: {integrity: sha512-NpHZBoHTfqyJk0m/s/+CSuAiwtebhYK90mDuf5eylTvgViNOujiaOaxNDxJkQQAsVvHWZftUGAx1EfO1rkKtLg==}
+    engines: {node: '>=12'}
+    dev: false
+
   /@types/hoist-non-react-statics/3.3.1:
     resolution: {integrity: sha512-iMIqiko6ooLrTh1joXodJK5X9xeEALT1kM5G3ZLhD3hszxBdIEd5C75U834D9mLcINgD4OyZf5uQXjkuYydWvA==}
     dependencies:
@@ -1542,6 +1608,11 @@ packages:
 
   /ast-types-flow/0.0.7:
     resolution: {integrity: sha512-eBvWn1lvIApYMhzQMsu9ciLfkBY499mFZlNqG+/9WR7PVlroQw0vG30cOQQbaKz3sCEc44TAOu2ykzqXSNnwag==}
+    dev: false
+
+  /attr-accept/2.2.2:
+    resolution: {integrity: sha512-7prDjvt9HmqiZ0cl5CRjtS84sEyhsHP2coDkaZKRKVfCDo9s7iw7ChVmar78Gu9pC4SoR/28wFu/G5JJhTnqEg==}
+    engines: {node: '>=4'}
     dev: false
 
   /autoprefixer/10.4.14_postcss@8.4.24:
@@ -1784,8 +1855,11 @@ packages:
     resolution: {integrity: sha512-0R9ikRb668HB7QDxT1vkpuUBtqc53YyAwMwGeUFKRojY/NWKvdZ+9UYtRfGmhqNbRkTSVpMbmyhXipFFv2cb/A==}
     engines: {node: '>= 12'}
 
-  /dayjs/1.11.9:
-    resolution: {integrity: sha512-QvzAURSbQ0pKdIye2txOzNaHmxtUBXerpY0FJsFXUMKbIZeFm5ht1LS/jFsrncjnmtv8HsG0W2g6c0zUjZWmpA==}
+  /date-fns/2.30.0:
+    resolution: {integrity: sha512-fnULvOpxnC5/Vg3NCiWelDsLiUc9bRwAPs/+LfTLNvetFCtCTN+yQz15C/fs4AwX1R9K5GLtLfn8QW+dWisaAw==}
+    engines: {node: '>=0.11'}
+    dependencies:
+      '@babel/runtime': 7.22.5
     dev: false
 
   /debug/2.6.9:
@@ -2325,6 +2399,17 @@ packages:
     engines: {node: ^10.12.0 || >=12.0.0}
     dependencies:
       flat-cache: 3.0.4
+    dev: false
+
+  /file-selector/0.6.0:
+    resolution: {integrity: sha512-QlZ5yJC0VxHxQQsQhXvBaC7VRJ2uaxTf+Tfpu4Z/OcVQJVpZO+DGU0rkoVW5ce2SccxugvpBJoMvUs59iILYdw==}
+    engines: {node: '>= 12'}
+    dependencies:
+      tslib: 2.6.0
+    dev: false
+
+  /filepond/4.30.4:
+    resolution: {integrity: sha512-FCwsMvG9iiEs6uobdDrTaKsCgsqys0NuLgPPD8n37AYVYBiiDkrPkk9MSIU5rT2FahYcL1bScYI9huIPtlzqyA==}
     dev: false
 
   /fill-range/7.0.1:
@@ -2925,6 +3010,10 @@ packages:
     resolution: {integrity: sha512-0KpjqXRVvrYyCsX1swR/XTK0va6VQkQM6MNo7PqW77ByjAhoARA8EfrP1N4+KlKj8YS0ZUCtRT/YUuhyYDujIQ==}
     dev: false
 
+  /lodash/4.17.21:
+    resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
+    dev: false
+
   /loose-envify/1.4.0:
     resolution: {integrity: sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==}
     hasBin: true
@@ -3425,6 +3514,16 @@ packages:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
     dev: false
 
+  /react-day-picker/8.8.0_date-fns@2.30.0+react@18.2.0:
+    resolution: {integrity: sha512-QIC3uOuyGGbtypbd5QEggsCSqVaPNu8kzUWquZ7JjW9fuWB9yv7WyixKmnaFelTLXFdq7h7zU6n/aBleBqe/dA==}
+    peerDependencies:
+      date-fns: ^2.28.0
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    dependencies:
+      date-fns: 2.30.0
+      react: 18.2.0
+    dev: false
+
   /react-dom/18.2.0_react@18.2.0:
     resolution: {integrity: sha512-6IMTriUmvsjHUjNtEDudZfuDQUoWXVxKHhlEGSk81n4YFS+r/Kl99wXiwlVXtPBtJenozv2P+hxDsw9eA7Xo6g==}
     peerDependencies:
@@ -3433,6 +3532,30 @@ packages:
       loose-envify: 1.4.0
       react: 18.2.0
       scheduler: 0.23.0
+    dev: false
+
+  /react-dropzone/14.2.3_react@18.2.0:
+    resolution: {integrity: sha512-O3om8I+PkFKbxCukfIR3QAGftYXDZfOE2N1mr/7qebQJHs7U+/RSL/9xomJNpRg9kM5h9soQSdf0Gc7OHF5Fug==}
+    engines: {node: '>= 10.13'}
+    peerDependencies:
+      react: '>= 16.8 || 18.0.0'
+    dependencies:
+      attr-accept: 2.2.2
+      file-selector: 0.6.0
+      prop-types: 15.8.1
+      react: 18.2.0
+    dev: false
+
+  /react-filepond/7.1.2_6357ff259b8e0c4d3dd9460351e304d0:
+    resolution: {integrity: sha512-vrlx9o/n+jGikh6jLey+PpUGYtEZn8MdeB6JFeX/5/N/Mu75IHG+MFQbv8R27bNXvS41mDtV9Fo5DG+s6siVIA==}
+    peerDependencies:
+      filepond: '>=3.7.x < 5.x'
+      react: 16 - 18
+      react-dom: 16 - 18
+    dependencies:
+      filepond: 4.30.4
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
     dev: false
 
   /react-hook-form/7.45.1_react@18.2.0:

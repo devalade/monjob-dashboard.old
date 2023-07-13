@@ -5,4 +5,8 @@ type UserAtom = {
   profile: Profile | null;
   company: CompanyProfile | null;
 };
-const userAtom = atom<UserAtom>({ user: null, profile: null, company: null });
+export const userAtom = atom<UserAtom>({
+  user: null,
+  profile: null,
+  company: null,
+});
